@@ -1,0 +1,11 @@
+<!-- 资料库主页 -->
+<import src="/pages/template/template.wxml" />
+<view class="bg-gradual-pink padding radius text-center shadow-blur">
+  <view class="grid col-5 margin-bottom text-center" wx:for="{{tableSeat}}" wx:key="index">
+
+    <button wx:for="{{tableSeat[index]}}" class="cu-btn bg-black shadow" style="width: 20%;">{{item.seatName}}</button>
+  </view>
+</view>
+<template is="navBottom" data="{{selectNav}}" />
+<template is="getPhoneNum" data="{{getPhoneNumFlag}}" />
+<template is="getPermission" data="{{getPermissionFlag}}" />

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edgedo.barwxqt.mapper.SeatInfoMapper" >
+   
+   
+    <resultMap id="BaseResultMap" type="com.edgedo.barwxqt.entity.SeatInfo" >
+			<id column="ID" property="id"/>
+			<result column="SEAT_NO" property="seatNo"/>
+			<result column="SEAT_CAPACITY" property="seatCapacity"/>
+			<result column="SET_MEAL_ID" property="setMealId"/>
+			<result column="SEAT_MIN_CONSUME" property="seatMinConsume"/>
+			<result column="CREATE_TIME" property="createTime"/>
+			<result column="CREATE_USER_ID" property="createUserId"/>
+			<result column="CREATE_USER_NAME" property="createUserName"/>
+			<result column="DATA_STATE" property="dataState"/>
+			<result column="X_INDEX" property="xindex"/>
+			<result column="Y_INDEX" property="yindex"/>
+			<result column="IS_TRANS" property="isTrans"/>
+			<result column="SEAT_PARTITION" property="seatPartition"/>
+    </resultMap>
+   
+    <resultMap id="BaseResultViewMap" type="com.edgedo.barwxqt.queryvo.SeatInfoView" extends="BaseResultMap">
+    
+    </resultMap>
+  
+  
+  <!-- ******* 新增字段请修改这里  ******  -->
+  <sql id="Base_Column_List">
+	 ID, SEAT_NO, SEAT_CAPACITY, SET_MEAL_ID, SEAT_MIN_CONSUME, CREATE_TIME, CREATE_USER_ID, CREATE_USER_NAME, DATA_STATE, X_INDEX, Y_INDEX, IS_TRANS, SEAT_PARTITION
+  </sql>
+  
+  <!-- ******* 利用好这里的动态查询条件  ******  -->
+  <sql id="where">
+  	<where>
+		<if test='queryObj != null and  queryObj.id != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.id)'>
+		AND  ID = #{queryObj.id}
+		</if>
+		<if test='queryObj != null and  queryObj.seatNo != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.seatNo)'>
+		AND  SEAT_NO = #{queryObj.seatNo}
+		</if>
+		<if test='queryObj != null and  queryObj.seatCapacity != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.seatCapacity)'>
+			AND  SEAT_CAPACITY = #{queryObj.seatCapacity}
+		</if>
+		<if test='queryObj != null and  queryObj.setMealId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.setMealId)'>
+		AND  SET_MEAL_ID = #{queryObj.setMealId}
+		</if>
+		<if test='queryObj != null and  queryObj.createTime != null'>
+			AND  CREATE_TIME = #{queryObj.createTime}
+		</if>
+		<if test='queryObj != null and  queryObj.createUserId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createUserId)'>
+		AND  CREATE_USER_ID = #{queryObj.createUserId}
+		</if>
+		<if test='queryObj != null and  queryObj.createUserName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createUserName)'>
+		AND  CREATE_USER_NAME = #{queryObj.createUserName}
+		</if>
+		<if test='queryObj != null and  queryObj.dataState != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.dataState)'>
+		AND  DATA_STATE = #{queryObj.dataState}
+		</if>
+		<if test='queryObj != null and  queryObj.xindex != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.xindex)'>
+			AND  X_INDEX = #{queryObj.xindex}
+		</if>
+		<if test='queryObj != null and  queryObj.yindex != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.yindex)'>
+			AND  Y_INDEX = #{queryObj.yindex}
+		</if>
+		<if test='queryObj != null and  queryObj.isTrans != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.isTrans)'>
+		AND  IS_TRANS = #{queryObj.isTrans}
+		</if>
+		<if test='queryObj != null and  queryObj.seatPartition != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.seatPartition)'>
+		AND  SEAT_PARTITION = #{queryObj.seatPartition}
+		</if>
+  	</where>
+  	
+  </sql>
+  
+  <!-- ******* 排序判断  ******  
+  <sql id="orderBy">
+  	<if test="orderBy != null and orderBy!= '' ">
+  		order by  ${orderBy}
+  	</if>
+  </sql>-->
+  
+  
+  <!-- 分页条件查询  -->
+  <select id="listPage" parameterType="com.edgedo.barwxqt.queryvo.SeatInfoQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from seat_info 
+  		<include refid="where"/>
+  </select>
+  
+   <!-- 不分页条件查询  -->
+  <select id="listByObj" parameterType="com.edgedo.barwxqt.queryvo.SeatInfoQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from seat_info 
+  		<include refid="where"/>
+  </select>
+
+
+	<select id="selectByYIndex" resultType="int">
+		select COUNT(DISTINCT Y_INDEX) from seat_info where DATA_STATE='1'
+	</select>
+
+	<select id="selectByYIndexNumForList" parameterType="int" resultMap="BaseResultViewMap">
+		select <include refid="Base_Column_List"/> from seat_info
+		where DATA_STATE='1' and Y_INDEX=#{yIndexNum} ORDER BY X_INDEX asc
+	</select>
+
+</mapper>

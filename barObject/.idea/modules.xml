@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/bar-admin-ht/bar-admin-ht.iml" filepath="$PROJECT_DIR$/bar-admin-ht/bar-admin-ht.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bar-wxmini-qt/bar-wxmini-qt.iml" filepath="$PROJECT_DIR$/bar-wxmini-qt/bar-wxmini-qt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-base/common-base.iml" filepath="$PROJECT_DIR$/common-base/common-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project.iml" filepath="$PROJECT_DIR$/project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sys-mng-web/sys-mng-web.iml" filepath="$PROJECT_DIR$/sys-mng-web/sys-mng-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tdp-codegen/tdp-codegen.iml" filepath="$PROJECT_DIR$/tdp-codegen/tdp-codegen.iml" />
+    </modules>
+  </component>
+</project>

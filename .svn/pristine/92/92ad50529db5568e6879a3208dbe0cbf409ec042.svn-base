@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edgedo.bar.mapper.OrderInfoMapper" >
+   
+   
+    <resultMap id="BaseResultMap" type="com.edgedo.bar.entity.OrderInfo" >
+			<id column="ID" property="id"/>
+			<result column="SEAT_ID" property="seatId"/>
+			<result column="ORDER_TIME" property="orderTime"/>
+			<result column="CHARGEBACK" property="chargeback"/>
+			<result column="CREAT_TIME" property="creatTime"/>
+			<result column="CREAT_USER_ID" property="creatUserId"/>
+			<result column="CREAT_USER_NAME" property="creatUserName"/>
+			<result column="DATA_STATE" property="dataState"/>
+			<result column="USER_ID" property="userId"/>
+    </resultMap>
+   
+    <resultMap id="BaseResultViewMap" type="com.edgedo.bar.queryvo.OrderInfoView" extends="BaseResultMap">
+    
+    </resultMap>
+  
+  
+  <!-- ******* 新增字段请修改这里  ******  -->
+  <sql id="Base_Column_List">
+	 ID, SEAT_ID, ORDER_TIME, CHARGEBACK, CREAT_TIME, CREAT_USER_ID, CREAT_USER_NAME, DATA_STATE, USER_ID
+  </sql>
+  
+  <!-- ******* 利用好这里的动态查询条件 ******  -->
+  <sql id="where">
+  	<where>
+		DATA_STATE='1'
+		<if test='queryObj != null and  queryObj.id != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.id)'>
+		AND  ID = #{queryObj.id}
+		</if>
+		<if test='queryObj != null and  queryObj.seatId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.seatId)'>
+		AND  SEAT_ID = #{queryObj.seatId}
+		</if>
+		<if test='queryObj != null and  queryObj.orderTime != null'>
+			AND  ORDER_TIME = #{queryObj.orderTime}
+		</if>
+		<if test='queryObj != null and  queryObj.chargeback != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.chargeback)'>
+		AND  CHARGEBACK = #{queryObj.chargeback}
+		</if>
+		<if test='queryObj != null and  queryObj.creatTime != null'>
+			AND  CREAT_TIME = #{queryObj.creatTime}
+		</if>
+		<if test='queryObj != null and  queryObj.creatUserId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.creatUserId)'>
+		AND  CREAT_USER_ID = #{queryObj.creatUserId}
+		</if>
+		<if test='queryObj != null and  queryObj.creatUserName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.creatUserName)'>
+		AND  CREAT_USER_NAME = #{queryObj.creatUserName}
+		</if>
+		<if test='queryObj != null and  queryObj.userId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userId)'>
+			AND  USER_ID = #{queryObj.userId}
+		</if>
+  	</where>
+  	
+  </sql>
+  
+  <!-- ******* 排序判断  ******  
+  <sql id="orderBy">
+  	<if test="orderBy != null and orderBy!= '' ">
+  		order by  ${orderBy}
+  	</if>
+  </sql>-->
+  
+  
+  <!-- 分页条件查询  -->
+  <select id="listPage" parameterType="com.edgedo.bar.queryvo.OrderInfoQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from order_info
+  		<include refid="where"/>
+  </select>
+
+
+	<!-- 根据用户姓名和手机号条件查询 -->
+	<select id="listPageForUserNameAndTel" parameterType="com.edgedo.bar.queryvo.OrderInfoQuery" resultMap="BaseResultViewMap">
+		select <include refid="Base_Column_List"/> from order_info
+		where DATA_STATE='1'
+		AND ID IN (
+			select ORDER_ID from order_details_info where DATA_STATE='1'
+			<if test='queryObj != null and  queryObj.userName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userName)'>
+				AND USER_NAME LIKE concat('%',#{queryObj.userName},'%')
+			</if>
+			<if test='queryObj != null and  queryObj.userTel != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userTel)'>
+				AND USER_TEL LIKE concat('%',#{queryObj.userTel},'%')
+			</if>
+		)
+	</select>
+  
+   <!-- 不分页条件查询  -->
+  <select id="listByObj" parameterType="com.edgedo.bar.queryvo.OrderInfoQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from order_info 
+  		<include refid="where"/>
+  </select>
+  
+  
+</mapper>

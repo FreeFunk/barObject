@@ -1,0 +1,217 @@
+<!-- 资料库主页 -->
+<import src="/pages/template/template.wxml" />
+<view class="bg-gradual-pink padding radius text-center shadow-blur" style="height:{{ktxWindowHeight-10}}rpx">
+  <view  wx:for="{{tableSeatAll}}" wx:for-index="x_index" class="grid col-4 margin-bottom text-center {{x_index==1||x_index==4||x_index==6?'align-end':''}}" style="flex-wrap: nowrap;display: flex;flex-direction: row;margin-bottom: {{ktxStatusHeight}}rpx;" >
+    <view wx:for="{{tableSeatAll[x_index]}}" wx:for-index="y_index" style="{{x_index==4&&y_index==2?'margin-right: 4%':''}}">
+        <view wx:if="{{item.floorFlag}}" style="width:100%;height:45px;padding: 13% 0 0 0;margin: 0 0 0 0;" class="basis-xs bg-grey margin-xs padding-sm radius">
+          {{item.seatNo}}
+        </view>
+        <button wx:if="{{!item.floorFlag && item.isTrans=='1' && item.seatPartition!='3'}}" style="width:66%;height: 24px;padding: 0px;font-size:8px;margin: 0px;" class="cu-btn {{item.isChooseSeat=='0'?'bg-black':''}} shadow" data-id="{{x_index}}$${{y_index}}"  bindtap="btnSeatTap" data-target="showSeatOrder">
+            {{item.seatNo}}
+          </button>
+          <button wx:if="{{!item.floorFlag && item.isTrans!='1' && item.seatPartition!='3'}}" style="width:106%;height: 24px;padding: 0px;font-size:8px;transform: rotate(90deg);margin:0 0 25% 0" class="cu-btn {{item.isChooseSeat=='0'?'bg-black':''}} shadow" data-id="{{x_index}}$${{y_index}}" bindtap="btnSeatTap" data-target="showSeatOrder">
+            {{item.seatNo}}
+          </button>
+          <button wx:if="{{!item.floorFlag && item.isTrans=='1' && item.seatPartition=='3'}}" class="cu-btn {{item.isChooseSeat=='0'?'bg-black':''}} shadow" style="width:100%;height: 33px;padding: 0px;margin:0px" data-id="{{x_index}}$${{y_index}}" bindtap="btnSeatTap" data-target="showSeatOrder">
+            {{item.seatNo}}
+          </button>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='showSeatOrder'?'show':''}}">
+<form bindsubmit="submitOrderInfo">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">{{seatName}}订座详情</view>
+      <view class="action" bindtap="hideModalSeat">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+     <scroll-view wx:if="{{todayInfo.length>0}}" scroll-y style="height:180px;margin-bottom: 2%;" >
+        <view class="cu-timeline" wx:for="{{todayInfo}}" wx:for-index="index">
+          <view class="cu-time" style="width:25%">{{filter.format(item.createTime, 'YY-MM-DD')}}</view>
+          <view class="cu-item">
+            <view class="content">
+              <text>{{seatName}}于该日被订座</text>
+            </view>
+          </view>
+        </view>
+     </scroll-view>
+      <scroll-view scroll-y style="height:150px">
+        <view class="cu-form-group">
+          <view class="title">最低消费</view>
+          <view class="text-price text-red">{{mealInfo.setMealPrice}}</view>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">卡座套餐</view>
+          <view >{{mealInfo.setMealName}}</view>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">套餐详情</view>
+          <textarea maxlength="-1" value="{{mealInfo.setMealDesc}}"></textarea>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">手机号码</view>
+          <input name="userTel" placeholder="输入手机号" value="{{userInfo.userTel}}"></input>
+          <view class="cu-capsule radius" wx:if="{{userInfo.userTel == null}}">
+            <view class="cu-tag bg-blue" bindtap="userPhotoInfo" data-target="showUserPhoto">
+              填写信息
+            </view>
+          </view>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">姓名</view>
+          <input name="userName" value="{{userInfo.userName}}" placeholder="输入姓名"></input>
+        </view>
+        <view class="cu-form-group">
+            <view class="title">日期选择</view>
+            <picker mode="date" name="orderDate" value="{{date}}"  bindchange="DateChange" data-target="showDateInfo">
+              <view class="picker">
+                {{date}}
+              </view>
+            </picker>
+          </view>                       
+        <view class="cu-form-group">
+          <view class="title">时间选择</view>
+          <picker mode="time" name="orderDateeTime" value="{{time}}"  bindchange="TimeChange">
+            <view class="picker" >
+              {{time}}
+            </view>
+          </picker>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="cu-bar bg-white">
+      <button class="action margin-0 flex-sub text-green " formType="submit">
+        <text class="cuIcon-moneybag"></text>微信支付</button>
+      <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModalSeat">取消</view>
+    </view>
+  </view>
+  </form>
+  </view>
+  <view class="cu-modal {{modelDateName=='showDateInfo'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">订单提示</view>
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <view class="padding-xl">
+        {{infoDate}}该日已被选择，请更换其他日期
+      </view>
+    </view>
+  </view>
+  <view class="cu-modal {{modelUpdateUserPhoto=='showUserPhoto'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">填写信息</view>
+        <view class="action" bindtap="modelUpdateUserPhotoHide">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <form bindsubmit="updateUserPhomInfo">
+        <view class="padding-xl">
+          <text class="text-red">注意：此信息填写真实信息，方便日后订座使用</text>
+          <view class="cu-form-group">
+            <view class="title">用户真实姓名</view>
+            <input name="userName" placeholder="输入用户真实姓名"></input>
+          </view>
+          <view class="cu-form-group">
+            <view class="title">手机号码</view>
+            <input name="userPhom" placeholder="输入手机号"></input>
+          </view>
+        </view>
+        <view class="cu-bar bg-white">
+          <button class="action margin-0 flex-sub text-green solid-left" formType="submit">提交</button>
+        </view>
+      </form>
+    </view>
+  </view>
+<template is="navBottom" data="{{selectNav}}" />
+<template is="getPhoneNum" data="{{getPhoneNumFlag}}" />
+<template is="getPermission" data="{{getPermissionFlag}}" />
+<wxs module="filter">
+function format(ts, option) {
+  var date = getDate(ts)
+  var year = date.getFullYear()
+  var month = date.getMonth() + 1
+  var day = date.getDate()
+  var week = date.getDay()
+  var hour = date.getHours()
+  var minute = date.getMinutes()
+  var second = date.getSeconds()
+  
+  //获取 年月日
+  if (option == 'YY-MM-DD') return [year, month, day].map(formatNumber).join('-')
+
+  //获取 年月
+  if (option == 'YY-MM') return [year, month].map(formatNumber).join('-')
+
+  //获取 年
+  if (option == 'YY') return [year].map(formatNumber).toString()
+
+  //获取 月
+  if (option == 'MM') return  [mont].map(formatNumber).toString()
+
+  //获取 日
+  if (option == 'DD') return [day].map(formatNumber).toString()
+
+  //获取 年月日 周一 至 周日
+  if (option == 'YY-MM-DD Week')  return [year, month, day].map(formatNumber).join('-') + ' ' + getWeek(week)
+
+  //获取 月日 周一 至 周日
+  if (option == 'MM-DD Week')  return [month, day].map(formatNumber).join('-') + ' ' + getWeek(week)
+
+  //获取 周一 至 周日
+  if (option == 'Week')  return getWeek(week)
+
+  //获取 时分秒
+  if (option == 'hh-mm-ss') return [hour, minute, second].map(formatNumber).join(':')
+
+  //获取 时分
+  if (option == 'hh-mm') return [hour, minute].map(formatNumber).join(':')
+
+  //获取 分秒
+  if (option == 'mm-dd') return [minute, second].map(formatNumber).join(':')
+
+  //获取 时
+  if (option == 'hh')  return [hour].map(formatNumber).toString()
+
+  //获取 分
+  if (option == 'mm')  return [minute].map(formatNumber).toString()
+
+  //获取 秒
+  if (option == 'ss') return [second].map(formatNumber).toString()
+
+  //默认 时分秒 年月日
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+
+function formatNumber(n) {
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
+
+function getWeek(n) {
+  switch(n) {
+    case 1:
+      return '星期一'
+    case 2:
+      return '星期二'
+    case 3:
+      return '星期三'
+    case 4:
+      return '星期四'
+    case 5:
+      return '星期五'
+    case 6:
+      return '星期六'
+    case 7:
+      return '星期日'
+  }
+}
+module.exports.format = format;
+</wxs>

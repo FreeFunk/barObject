@@ -1,0 +1,8 @@
+package com.edgedo.bar.queryvo;
+
+import com.edgedo.bar.entity.SeatInfo;
+
+public class SeatInfoView extends SeatInfo {
+
+
+}

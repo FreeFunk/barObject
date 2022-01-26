@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edgedo.sys.mapper.SysUserMapper" >
+   
+   
+    <resultMap id="BaseResultMap" type="com.edgedo.sys.entity.SysUser" >
+			<id column="ID" property="id"/>
+			<result column="USER_ACCOUNT" property="userAccount"/>
+			<result column="USER_PASSWORD" property="userPassword"/>
+			<result column="USER_NAME" property="userName"/>
+			<result column="USER_TEL" property="userTel"/>
+			<result column="USER_AGE" property="userAge"/>
+			<result column="USER_SEX" property="userSex"/>
+			<result column="USER_HEAD" property="userHead"/>
+			<result column="USER_ROLE_ID" property="userRoleId"/>
+			<result column="USER_ROLE_NAME" property="userRoleName"/>
+			<result column="CREATE_TIME" property="createTime"/>
+			<result column="CREATE_USER_ID" property="createUserId"/>
+			<result column="CREATE_USER_NAME" property="createUserName"/>
+			<result column="DATA_STATE" property="dataState"/>
+			<result column="CITY" property="city"/>
+			<result column="PROVINCE" property="province"/>
+			<result column="COUNTRY" property="country"/>
+			<result column="LANGUAGE" property="language"/>
+			<result column="LAST_LOGIN_TIME" property="lastLoginTime"/>
+			<result column="LAST_SESSION_KEY" property="lastSessionKey"/>
+			<result column="OPEN_ID" property="openId"/>
+			<result column="IS_POWER" property="isPower"/>
+    </resultMap>
+   
+    <resultMap id="BaseResultViewMap" type="com.edgedo.sys.queryvo.SysUserView" extends="BaseResultMap">
+    
+    </resultMap>
+  
+  
+  <!-- ******* 新增字段请修改这里  ******  -->
+  <sql id="Base_Column_List">
+	 ID, USER_ACCOUNT, USER_PASSWORD, USER_NAME, USER_TEL, USER_AGE, USER_SEX, USER_HEAD, USER_ROLE_ID,
+	 USER_ROLE_NAME, CREATE_TIME, CREATE_USER_ID, CREATE_USER_NAME, DATA_STATE,CITY, PROVINCE, COUNTRY,
+	 LANGUAGE, LAST_LOGIN_TIME, LAST_SESSION_KEY,OPEN_ID,IS_POWER
+  </sql>
+  
+  <!-- ******* 利用好这里的动态查询条件  ******  -->
+  <sql id="where">
+  	<where>
+		DATA_STATE='1'
+		<if test='queryObj != null and  queryObj.id != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.id)'>
+		AND  ID = #{queryObj.id}
+		</if>
+		<if test='queryObj != null and  queryObj.userAccount != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userAccount)'>
+		AND  USER_ACCOUNT like "%"#{queryObj.userAccount}"%"
+		</if>
+		<if test='queryObj != null and  queryObj.userPassword != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userPassword)'>
+		AND  USER_PASSWORD = #{queryObj.userPassword}
+		</if>
+		<if test='queryObj != null and  queryObj.userName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userName)'>
+		AND  USER_NAME = #{queryObj.userName}
+		</if>
+		<if test='queryObj != null and  queryObj.userTel != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userTel)'>
+		AND  USER_TEL = #{queryObj.userTel}
+		</if>
+		<if test='queryObj != null and  queryObj.userAge != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userAge)'>
+		AND  USER_AGE = #{queryObj.userAge}
+		</if>
+		<if test='queryObj != null and  queryObj.userSex != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userSex)'>
+		AND  USER_SEX = #{queryObj.userSex}
+		</if>
+		<if test='queryObj != null and  queryObj.userHead != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userHead)'>
+		AND  USER_HEAD = #{queryObj.userHead}
+		</if>
+		<if test='queryObj != null and  queryObj.userRoleId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userRoleId)'>
+		AND  USER_ROLE_ID = #{queryObj.userRoleId}
+		</if>
+		<if test='queryObj != null and  queryObj.userRoleName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userRoleName)'>
+		AND  USER_ROLE_NAME like "%"#{queryObj.userRoleName}"%"
+		</if>
+		<if test='queryObj != null and  queryObj.createTime != null'>
+			AND  CREATE_TIME = #{queryObj.createTime}
+		</if>
+		<if test='queryObj != null and  queryObj.createUserId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createUserId)'>
+		AND  CREATE_USER_ID = #{queryObj.createUserId}
+		</if>
+		<if test='queryObj != null and  queryObj.createUserName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createUserName)'>
+		AND  CREATE_USER_NAME = #{queryObj.createUserName}
+		</if>
+		<if test='queryObj != null and  queryObj.dataState != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.dataState)'>
+		AND  DATA_STATE = #{queryObj.dataState}
+		</if>
+  	</where>
+  	
+  </sql>
+  
+  <!-- ******* 排序判断  ******  
+  <sql id="orderBy">
+  	<if test="orderBy != null and orderBy!= '' ">
+  		order by  ${orderBy}
+  	</if>
+  </sql>-->
+  
+  
+  <!-- 分页条件查询  -->
+  <select id="listPage" parameterType="com.edgedo.sys.queryvo.SysUserQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from sys_user 
+  		<include refid="where"/>
+  </select>
+
+	<select id="listPageUserInfoAndMoneyInfo" parameterType="com.edgedo.sys.queryvo.SysUserQuery" resultMap="BaseResultViewMap">
+		select <include refid="Base_Column_List"/> from sys_user
+		<include refid="where"/> and USER_ROLE_ID = 'BAR_USER'
+	</select>
+
+   <!-- 不分页条件查询  -->
+  <select id="listByObj" parameterType="com.edgedo.sys.queryvo.SysUserQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from sys_user 
+  		<include refid="where"/>
+  </select>
+
+	<!--根据账号查询用户  -->
+	<select id="getAdminUserByCode" parameterType="string" resultMap="BaseResultViewMap">
+		select <include refid="Base_Column_List"/> from sys_user
+		where USER_ACCOUNT=#{userCode} and DATA_STATE='1'
+	</select>
+
+	<!--根据miniOpenId查询用户是否存在-->
+	<select id="loadByMiniOpenId" parameterType="string" resultMap="BaseResultViewMap">
+		select <include refid="Base_Column_List"/> from sys_user
+		where DATA_STATE = '1' and OPEN_ID = #{openId}
+	</select>
+	<!-- 查询非普通用户  -->
+	<select id="queryAdminUsers" parameterType="com.edgedo.sys.queryvo.SysUserQuery" resultMap="BaseResultViewMap">
+		select <include refid="Base_Column_List"/> from sys_user
+		where DATA_STATE='1' AND USER_ROLE_ID != 'BAR_USER'
+	</select>
+	<update id="logicDeleteByIds" parameterType="string">
+		update sys_user set DATA_STATE='0'
+		where DATA_STATE='1'
+		and ID in
+		<foreach item="id" index="index" collection="list" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</update>
+
+</mapper>

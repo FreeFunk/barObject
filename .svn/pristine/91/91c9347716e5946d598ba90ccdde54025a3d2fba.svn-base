@@ -1,0 +1,14 @@
+{
+    "pages": [
+        "pages/mine/mine",
+        "pages/databank/dataBankHome/dataBankHome"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}

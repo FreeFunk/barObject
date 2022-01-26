@@ -1,0 +1,271 @@
+package com.edgedo.bar.entity;
+
+import java.io.Serializable;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotations.TableField;
+
+@TableName("chargeback_details_info")
+public class ChargebackDetailsInfo implements Serializable{
+	
+		
+	/**
+	 * 属性描述:主键
+	 */
+	@TableField(value="ID",exist=true)
+	java.lang.String id;
+	
+	/**
+	 * 属性描述:订单ID
+	 */
+	@TableField(value="ORDER_ID",exist=true)
+	java.lang.String orderId;
+	
+	/**
+	 * 属性描述:预订时间
+	 */
+	@TableField(value="ORDER_TIME",exist=true)
+	java.util.Date orderTime;
+	
+	/**
+	 * 属性描述:付款金额
+	 */
+	@TableField(value="TOTAL_CONSUME",exist=true)
+	java.math.BigDecimal totalConsume;
+	
+	/**
+	 * 属性描述:退单时间
+	 */
+	@TableField(value="CHARGEBACK_TIME",exist=true)
+	java.util.Date chargebackTime;
+	
+	/**
+	 * 属性描述:退款金额
+	 */
+	@TableField(value="REFUND_AMOUNT",exist=true)
+	java.math.BigDecimal refundAmount;
+	
+	/**
+	 * 属性描述:退单原因
+	 */
+	@TableField(value="REASON",exist=true)
+	java.lang.String reason;
+	
+	/**
+	 * 属性描述:商家备注
+	 */
+	@TableField(value="REMARKS",exist=true)
+	java.lang.String remarks;
+	
+	/**
+	 * 属性描述:创建时间
+	 */
+	@TableField(value="CREATE_TIME",exist=true)
+	java.util.Date createTime;
+	
+	/**
+	 * 属性描述:创建人ID
+	 */
+	@TableField(value="CREATE_USER_ID",exist=true)
+	java.lang.String createUserId;
+	
+	/**
+	 * 属性描述:创建人名
+	 */
+	@TableField(value="CREATE_USER_NAME",exist=true)
+	java.lang.String createUserName;
+	
+	/**
+	 * 属性描述:数据状态
+	 */
+	@TableField(value="DATA_STATE",exist=true)
+	java.lang.String dataState;
+	
+	
+	
+	
+	
+	
+	public java.lang.String getId(){
+		return this.id;
+	}
+	
+	public void setId(java.lang.String id){
+		this.id=id;
+	}
+	
+	
+	public java.lang.String getOrderId(){
+		return this.orderId;
+	}
+	
+	public void setOrderId(java.lang.String orderId){
+		this.orderId=orderId;
+	}
+	
+	
+	public java.util.Date getOrderTime(){
+		return this.orderTime;
+	}
+	
+	public void setOrderTime(java.util.Date orderTime){
+		this.orderTime=orderTime;
+	}
+	
+	
+	public java.math.BigDecimal getTotalConsume(){
+		return this.totalConsume;
+	}
+	
+	public void setTotalConsume(java.math.BigDecimal totalConsume){
+		this.totalConsume=totalConsume;
+	}
+	
+	
+	public java.util.Date getChargebackTime(){
+		return this.chargebackTime;
+	}
+	
+	public void setChargebackTime(java.util.Date chargebackTime){
+		this.chargebackTime=chargebackTime;
+	}
+	
+	
+	public java.math.BigDecimal getRefundAmount(){
+		return this.refundAmount;
+	}
+	
+	public void setRefundAmount(java.math.BigDecimal refundAmount){
+		this.refundAmount=refundAmount;
+	}
+	
+	
+	public java.lang.String getReason(){
+		return this.reason;
+	}
+	
+	public void setReason(java.lang.String reason){
+		this.reason=reason;
+	}
+	
+	
+	public java.lang.String getRemarks(){
+		return this.remarks;
+	}
+	
+	public void setRemarks(java.lang.String remarks){
+		this.remarks=remarks;
+	}
+	
+	
+	public java.util.Date getCreateTime(){
+		return this.createTime;
+	}
+	
+	public void setCreateTime(java.util.Date createTime){
+		this.createTime=createTime;
+	}
+	
+	
+	public java.lang.String getCreateUserId(){
+		return this.createUserId;
+	}
+	
+	public void setCreateUserId(java.lang.String createUserId){
+		this.createUserId=createUserId;
+	}
+	
+	
+	public java.lang.String getCreateUserName(){
+		return this.createUserName;
+	}
+	
+	public void setCreateUserName(java.lang.String createUserName){
+		this.createUserName=createUserName;
+	}
+	
+	
+	public java.lang.String getDataState(){
+		return this.dataState;
+	}
+	
+	public void setDataState(java.lang.String dataState){
+		this.dataState=dataState;
+	}
+	
+	
+	
+	
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+			sb.append(", id=").append(id);			
+			sb.append(", orderId=").append(orderId);			
+			sb.append(", orderTime=").append(orderTime);			
+			sb.append(", totalConsume=").append(totalConsume);			
+			sb.append(", chargebackTime=").append(chargebackTime);			
+			sb.append(", refundAmount=").append(refundAmount);			
+			sb.append(", reason=").append(reason);			
+			sb.append(", remarks=").append(remarks);			
+			sb.append(", createTime=").append(createTime);			
+			sb.append(", createUserId=").append(createUserId);			
+			sb.append(", createUserName=").append(createUserName);			
+			sb.append(", dataState=").append(dataState);			
+        sb.append("]");
+        return sb.toString();
+    }
+
+   
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        ChargebackDetailsInfo other = (ChargebackDetailsInfo) that;
+        boolean flag = true;
+        return  flag
+        		&&(this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))		
+				        		&&(this.getOrderId() == null ? other.getId() == null : this.getOrderId().equals(other.getOrderId()))		
+				        		&&(this.getOrderTime() == null ? other.getId() == null : this.getOrderTime().equals(other.getOrderTime()))		
+				        		&&(this.getTotalConsume() == null ? other.getId() == null : this.getTotalConsume().equals(other.getTotalConsume()))		
+				        		&&(this.getChargebackTime() == null ? other.getId() == null : this.getChargebackTime().equals(other.getChargebackTime()))		
+				        		&&(this.getRefundAmount() == null ? other.getId() == null : this.getRefundAmount().equals(other.getRefundAmount()))		
+				        		&&(this.getReason() == null ? other.getId() == null : this.getReason().equals(other.getReason()))		
+				        		&&(this.getRemarks() == null ? other.getId() == null : this.getRemarks().equals(other.getRemarks()))		
+				        		&&(this.getCreateTime() == null ? other.getId() == null : this.getCreateTime().equals(other.getCreateTime()))		
+				        		&&(this.getCreateUserId() == null ? other.getId() == null : this.getCreateUserId().equals(other.getCreateUserId()))		
+				        		&&(this.getCreateUserName() == null ? other.getId() == null : this.getCreateUserName().equals(other.getCreateUserName()))		
+				        		&&(this.getDataState() == null ? other.getId() == null : this.getDataState().equals(other.getDataState()))		
+				;
+    }
+
+  
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());		
+		        result = prime * result + ((getOrderId() == null) ? 0 : getOrderId().hashCode());		
+		        result = prime * result + ((getOrderTime() == null) ? 0 : getOrderTime().hashCode());		
+		        result = prime * result + ((getTotalConsume() == null) ? 0 : getTotalConsume().hashCode());		
+		        result = prime * result + ((getChargebackTime() == null) ? 0 : getChargebackTime().hashCode());		
+		        result = prime * result + ((getRefundAmount() == null) ? 0 : getRefundAmount().hashCode());		
+		        result = prime * result + ((getReason() == null) ? 0 : getReason().hashCode());		
+		        result = prime * result + ((getRemarks() == null) ? 0 : getRemarks().hashCode());		
+		        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());		
+		        result = prime * result + ((getCreateUserId() == null) ? 0 : getCreateUserId().hashCode());		
+		        result = prime * result + ((getCreateUserName() == null) ? 0 : getCreateUserName().hashCode());		
+		        result = prime * result + ((getDataState() == null) ? 0 : getDataState().hashCode());		
+		;
+        return result;
+    }
+
+}

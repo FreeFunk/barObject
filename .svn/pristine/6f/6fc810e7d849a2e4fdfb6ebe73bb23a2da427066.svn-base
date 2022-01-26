@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edgedo.sys.mapper.SysWxUserMapper" >
+   
+   
+    <resultMap id="BaseResultMap" type="com.edgedo.sys.entity.SysWxUser" >
+			<id column="ID" property="id"/>
+			<result column="ORA_ID" property="oraId"/>
+			<result column="OPEN_ID" property="openId"/>
+			<result column="NICK_NAME" property="nickName"/>
+			<result column="HEAD_PHOTO" property="headPhoto"/>
+			<result column="GENDER" property="gender"/>
+			<result column="CITY" property="city"/>
+			<result column="PROVINCE" property="province"/>
+			<result column="COUNTRY" property="country"/>
+			<result column="LANGUAGE" property="language"/>
+			<result column="LAST_LOGIN_TIME" property="lastLoginTime"/>
+			<result column="LAST_SESSION_KEY" property="lastSessionKey"/>
+			<result column="CREATE_TIME" property="createTime"/>
+			<result column="YW_USER_ID" property="ywUserId"/>
+			<result column="PHONE_NUM" property="phoneNum"/>
+			<result column="UNION_ID" property="unionId"/>
+    </resultMap>
+   
+    <resultMap id="BaseResultViewMap" type="com.edgedo.sys.queryvo.SysWxUserView" extends="BaseResultMap">
+    
+    </resultMap>
+  
+  
+  <!-- ******* 新增字段请修改这里  ******  -->
+  <sql id="Base_Column_List">
+	 ID, ORA_ID, OPEN_ID, NICK_NAME, HEAD_PHOTO, GENDER, CITY, PROVINCE, COUNTRY, LANGUAGE, LAST_LOGIN_TIME, LAST_SESSION_KEY, CREATE_TIME, YW_USER_ID, PHONE_NUM, UNION_ID
+  </sql>
+  
+  <!-- ******* 利用好这里的动态查询条件  ******  -->
+  <sql id="where">
+  	<where>
+		<if test='queryObj != null and  queryObj.id != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.id)'>
+		AND  ID = #{queryObj.id}
+		</if>
+		<if test='queryObj != null and  queryObj.oraId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.oraId)'>
+		AND  ORA_ID = #{queryObj.oraId}
+		</if>
+		<if test='queryObj != null and  queryObj.openId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.openId)'>
+		AND  OPEN_ID = #{queryObj.openId}
+		</if>
+		<if test='queryObj != null and  queryObj.nickName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.nickName)'>
+		AND  NICK_NAME = #{queryObj.nickName}
+		</if>
+		<if test='queryObj != null and  queryObj.headPhoto != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.headPhoto)'>
+		AND  HEAD_PHOTO = #{queryObj.headPhoto}
+		</if>
+		<if test='queryObj != null and  queryObj.gender != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.gender)'>
+		AND  GENDER = #{queryObj.gender}
+		</if>
+		<if test='queryObj != null and  queryObj.city != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.city)'>
+		AND  CITY = #{queryObj.city}
+		</if>
+		<if test='queryObj != null and  queryObj.province != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.province)'>
+		AND  PROVINCE = #{queryObj.province}
+		</if>
+		<if test='queryObj != null and  queryObj.country != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.country)'>
+		AND  COUNTRY = #{queryObj.country}
+		</if>
+		<if test='queryObj != null and  queryObj.language != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.language)'>
+		AND  LANGUAGE = #{queryObj.language}
+		</if>
+		<if test='queryObj != null and  queryObj.lastLoginTime != null'>
+			AND  LAST_LOGIN_TIME = #{queryObj.lastLoginTime}
+		</if>
+		<if test='queryObj != null and  queryObj.lastSessionKey != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.lastSessionKey)'>
+		AND  LAST_SESSION_KEY = #{queryObj.lastSessionKey}
+		</if>
+		<if test='queryObj != null and  queryObj.createTime != null'>
+			AND  CREATE_TIME = #{queryObj.createTime}
+		</if>
+		<if test='queryObj != null and  queryObj.ywUserId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.ywUserId)'>
+		AND  YW_USER_ID = #{queryObj.ywUserId}
+		</if>
+		<if test='queryObj != null and  queryObj.phoneNum != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.phoneNum)'>
+		AND  PHONE_NUM = #{queryObj.phoneNum}
+		</if>
+		<if test='queryObj != null and  queryObj.unionId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.unionId)'>
+		AND  UNION_ID = #{queryObj.unionId}
+		</if>
+  	</where>
+  	
+  </sql>
+  
+  <!-- ******* 排序判断  ******  
+  <sql id="orderBy">
+  	<if test="orderBy != null and orderBy!= '' ">
+  		order by  ${orderBy}
+  	</if>
+  </sql>-->
+  
+  
+  <!-- 分页条件查询  -->
+  <select id="listPage" parameterType="com.edgedo.sys.queryvo.SysWxUserQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from sys_wx_user 
+  		<include refid="where"/>
+  </select>
+  
+   <!-- 不分页条件查询  -->
+  <select id="listByObj" parameterType="com.edgedo.sys.queryvo.SysWxUserQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from sys_wx_user 
+  		<include refid="where"/>
+  </select>
+  
+  
+</mapper>

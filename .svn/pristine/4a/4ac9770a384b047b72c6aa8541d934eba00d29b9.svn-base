@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>编辑</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../../../layuiadmin/layui/css/layui.css" media="all">
+</head>
+<body>
+
+<div class="layui-form" lay-filter="SysUser-form" id="SysUser-form" style="padding: 20px 30px 0 0;">
+                <div hidden="true" class="layui-form-item layui-hide">
+                    <label class="layui-form-label">主键</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="id" id="id" lay-verify="required" placeholder="请输入主键" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户账号</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="userAccount" readonly="ture" lay-verify="required" placeholder="请输入用户账号" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">姓名</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="userName" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-hide">
+                        <label class="layui-form-label">性别</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="userSex" name="userSex" lay-verify="required" placeholder="请输入性别" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                         <label class="layui-form-label">性别</label>
+                         <div class="layui-input-block">
+                            <input type="radio" name="xuanzeSex" lay-filter="clickSex" id="userNan"  value="男" title="男">
+                            <input type="radio" name="xuanzeSex" lay-filter="clickSex" id="userNv"  value="女" title="女" >
+                         </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">年龄</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="age" max="100" min="1" name="userAge" lay-verify="required|number" placeholder="请输入年龄(1-100)" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">电话</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="userTel" lay-verify="required|phone|number" placeholder="请输入电话" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item layui-hide">
+                        <label class="layui-form-label">角色：</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="userRoleName" name="userRoleName" lay-verify="required" placeholder="请输入角色" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item" id="defaultRoleFrame" >
+                        <label class="layui-form-label">默认角色：</label>
+                        <div class="layui-input-block">
+                            <select id="defaultRole" name="xuanzeRole" lay-filter="selectValueChange" lay-verify="required" >
+                                <option value="" ></option>
+                                <option id="barAdmin"  value="酒吧管理员">酒吧管理员</option>
+                                <option id="barUser"  value="普通用户">普通用户</option>
+                            </select>
+
+                            </select>
+                        </div>
+                    </div>
+    <div class="layui-form-item layui-hide">
+        <input type="button" lay-submit lay-filter="SysUser-form-edit" id="SysUser-form-edit" value="确认编辑">
+    </div>
+</div>
+
+<script src="../../../../../layuiadmin/layui/layui.js"></script>
+<script>
+        layui.config({
+            base: '../../../../../layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index', //主入口模块
+            $tool:'tool'
+        }).use(['index', 'form','$tool','laydate'], function(){
+
+            var $ = layui.$
+                ,$tool = layui.$tool
+                ,laydate = layui.laydate
+                ,admin = layui.admin
+                ,form = layui.form;
+
+
+            /*var queryArgs = $tool.getQueryParam();//获取查询参数
+            var id = queryArgs['id'];*/
+
+            var ageYanZheng = 'right' ;
+
+            //监听修改保存
+            form.on('submit(SysUser-form-edit)', function(data){
+                if(ageYanZheng == 'right'){
+                    var field = data.field; //获取提交的字段
+                    debugger;
+                    var index = parent.layer.getFrameIndex(window.name);//先得到当前iframe层的索引
+                    admin.req({
+                        url:layui.setter.basePath +'/admin/sysUser/saveOrUpdate.jsn',
+                        data:field,
+                        method:"post",
+                        success:function (data) {
+                            parent.layui.table.reload('SysUser-list'); //重载表格
+                            parent.layer.close(index); //再执行关闭
+                            parent.layer.msg('修改成功', {
+                                icon: 1
+                            });
+                        }
+                    });
+                }else{
+                    layer.msg('年龄输入必须在100岁之前');
+                    return false;
+                }
+
+            });
+
+            //性别的选中
+            var initUserSex = function(){
+                debugger
+                var sex = $("#userSex").val();
+                if(sex=='男'){
+                    $("#userNv").removeProp('checked');
+                    $("#userNan").prop('checked','checked');
+                }else{
+                    $("#userNan").removeProp('checked');
+                    $("#userNv").prop('checked','checked');
+                }
+                form.render();
+            }
+            initUserSex();
+
+            //监听单击单选框事件
+            form.on('radio(clickSex)', function (data) {
+                var xuanZhongSex = data.value;
+                $('#userSex').val(xuanZhongSex);
+            });
+
+
+            $('#age').blur(function(){
+                debugger
+                var limitNum = $('#age').val().replace(/[^0-9.]+/g, "");
+                if(limitNum>=0&&limitNum<=100){
+                    $('#age').val(limitNum);
+                    ageYanZheng = 'right';
+                }else{
+                    ageYanZheng = 'false';
+                }
+            });
+
+            //角色的选中
+            var initDefaultRole = function(){
+                debugger
+                var role = $("#userRoleName").val();
+                if(role=='系统超级管理员'){
+                    $("#defaultRoleFrame").prop('hidden','true');
+                }else{
+
+                    if(role=='普通用户'){
+                        $("#barAdmin").removeProp('selected');
+                        $("#barUser").prop('selected','selected');
+                    }else{
+                        $("#barUser").removeProp('selected');
+                        $("#barAdmin").prop('selected','selected');
+                    }
+                }
+
+                form.render();
+            }
+            initDefaultRole();
+
+            //监听下拉列表改变事件
+            form.on('select(selectValueChange)', function (data){
+                //获取选中项的值
+                var optionValue = data.value;
+                //将值赋给角色框
+                $("#userRoleName").val(optionValue);
+                form.render();
+            })
+
+        })
+
+</script>
+</body>
+</html>

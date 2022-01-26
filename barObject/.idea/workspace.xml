@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="92a598f8-0edd-463b-8784-107fcaf8e9bd" name="Default Changelist" comment="后台定时任务修改订单状态">
+      <change beforePath="$PROJECT_DIR$/common-base/common-base.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common-base/common-base.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sys-mng-web/sys-mng-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sys-mng-web/sys-mng-web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tdp-codegen/src/main/java/test/code/BarAdminHtCodeGenIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/tdp-codegen/src/main/java/test/code/BarAdminHtCodeGenIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tdp-codegen/src/main/java/test/code/BarWxMiniQtCodeGenIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/tdp-codegen/src/main/java/test/code/BarWxMiniQtCodeGenIn.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/bar-wxmini-qt/src/main/resources/static/views/bar" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\GitHub-Maven\repository" />
+        <option name="mavenHome" value="D:/GitHub-Maven/apache-maven-3.2.5" />
+        <option name="userSettingsFile" value="D:\GitHub-Maven\apache-maven-3.2.5\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1qeOXQsycoG4Tk7V4VAMphQPfCS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder4" value="4" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder5" value="5" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth0" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth1" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth2" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth3" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth4" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth5" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder5" value="5" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth0" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth1" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth2" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth3" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth4" value="75" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth5" value="75" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.27687776" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\E\ObjectBar\barObject\bar-wxmini-qt\src\main\java\com\edgedo\barwxqt\config" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.edgedo.eunm" />
+      <recent name="com.edgedo.barwxqt.entity" />
+      <recent name="com.edgedo.barwxqt.mapper" />
+      <recent name="com.edgedo.barwxqt.service" />
+      <recent name="com.edgedo.sys.controller" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\E\ObjectBar\barObject\bar-wxmini-qt\src\main\resources\mapper\barwxqt" />
+      <recent name="E:\E\ObjectBar\barObject\bar-wxmini-qt\src\main\java\com\edgedo\barwxqt\queryvo" />
+      <recent name="E:\E\ObjectBar\barObject\bar-wxmini-qt\src\main\java\com\edgedo\config" />
+      <recent name="E:\E\ObjectBar\barObject\bar-wxmini-qt\src\main\java\com\edgedo\barwxqt\service" />
+      <recent name="E:\E\ObjectBar\barObject\sys-mng-web\src\main\java\com\edgedo\config" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.BarAdminHtApplication">
+    <configuration name="BarAdminHtCodeGenIn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.code.BarAdminHtCodeGenIn" />
+      <module name="tdp-codegen" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.code.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BarWxMiniQtCodeGenIn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.code.BarWxMiniQtCodeGenIn" />
+      <module name="tdp-codegen" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.code.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BarAdminHtApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="bar-admin-ht" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edgedo.BarAdminHtApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BarWxMiniApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="bar-wxmini-qt" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edgedo.BarWxMiniApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SysMngWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sys-mng-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.edgedo.SysMngWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BarAdminHtCodeGenIn" />
+        <item itemvalue="Application.BarWxMiniQtCodeGenIn" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\E\ObjectBar\barObject" />
+          <option name="myCopyRoot" value="E:\E\ObjectBar\barObject" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\E\ObjectBar\barObject" />
+          <option name="myCopyRoot" value="E:\E\ObjectBar\barObject" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="92a598f8-0edd-463b-8784-107fcaf8e9bd" name="Default Changelist" comment="" />
+      <created>1617436627495</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617436627495</updated>
+      <workItem from="1617436635424" duration="1439000" />
+      <workItem from="1617675017539" duration="3674000" />
+      <workItem from="1617700443415" duration="4675000" />
+      <workItem from="1617711158987" duration="2383000" />
+      <workItem from="1617787847529" duration="786000" />
+      <workItem from="1617883142487" duration="2693000" />
+      <workItem from="1617936611826" duration="5961000" />
+      <workItem from="1617947795026" duration="1231000" />
+      <workItem from="1617954746112" duration="3331000" />
+      <workItem from="1617961615931" duration="2215000" />
+      <workItem from="1617970282706" duration="1348000" />
+      <workItem from="1617972018262" duration="12730000" />
+      <workItem from="1618022592702" duration="8870000" />
+      <workItem from="1618116499984" duration="475000" />
+      <workItem from="1618121964846" duration="1464000" />
+      <workItem from="1618133127920" duration="8843000" />
+      <workItem from="1618231990795" duration="5128000" />
+      <workItem from="1618279470103" duration="9032000" />
+      <workItem from="1618315417364" duration="1841000" />
+      <workItem from="1618406289976" duration="6722000" />
+      <workItem from="1618450913361" duration="22000" />
+      <workItem from="1618488791529" duration="9666000" />
+      <workItem from="1618537114510" duration="362000" />
+      <workItem from="1618575193291" duration="2362000" />
+      <workItem from="1618625635659" duration="26954000" />
+      <workItem from="1618812102948" duration="2705000" />
+      <workItem from="1618882893596" duration="903000" />
+      <workItem from="1618886955794" duration="535000" />
+      <workItem from="1618888102771" duration="1240000" />
+      <workItem from="1618925753529" duration="6071000" />
+      <workItem from="1618969929389" duration="1470000" />
+      <workItem from="1619006774472" duration="4085000" />
+      <workItem from="1619056059857" duration="424000" />
+      <workItem from="1619094542422" duration="3230000" />
+      <workItem from="1619141805994" duration="7934000" />
+      <workItem from="1619183436681" duration="1474000" />
+      <workItem from="1619337960952" duration="1991000" />
+      <workItem from="1619416918937" duration="3275000" />
+      <workItem from="1619445335370" duration="636000" />
+      <workItem from="1619590396691" duration="613000" />
+      <workItem from="1619681502521" duration="728000" />
+      <workItem from="1619875494831" duration="3695000" />
+      <workItem from="1619949766568" duration="1952000" />
+      <workItem from="1620202866938" duration="4592000" />
+      <workItem from="1620222250466" duration="3130000" />
+      <workItem from="1620265601594" duration="183000" />
+      <workItem from="1620266496273" duration="579000" />
+      <workItem from="1620280336410" duration="880000" />
+      <workItem from="1620352618811" duration="7394000" />
+      <workItem from="1620390618596" duration="327000" />
+      <workItem from="1620390989358" duration="2766000" />
+      <workItem from="1620438328152" duration="7332000" />
+      <workItem from="1620474495576" duration="7760000" />
+      <workItem from="1620525172769" duration="9508000" />
+      <workItem from="1620651496980" duration="1664000" />
+      <workItem from="1620697083737" duration="358000" />
+      <workItem from="1620734288392" duration="3763000" />
+      <workItem from="1620783554029" duration="554000" />
+      <workItem from="1620784324239" duration="361000" />
+      <workItem from="1620824895257" duration="2704000" />
+      <workItem from="1620906382991" duration="6619000" />
+      <workItem from="1620956231532" duration="1099000" />
+      <workItem from="1620992794324" duration="646000" />
+      <workItem from="1621216125966" duration="651000" />
+      <workItem from="1622034855579" duration="8109000" />
+      <workItem from="1622095717281" duration="613000" />
+      <workItem from="1622185311413" duration="773000" />
+      <workItem from="1622215595844" duration="1707000" />
+      <workItem from="1622447164480" duration="465000" />
+      <workItem from="1626334759497" duration="1380000" />
+      <workItem from="1629875459256" duration="8296000" />
+      <workItem from="1629940494963" duration="6646000" />
+      <workItem from="1630025620847" duration="573000" />
+      <workItem from="1630312904130" duration="2976000" />
+      <workItem from="1630477261120" duration="1329000" />
+      <workItem from="1630633275272" duration="2166000" />
+      <workItem from="1640159599942" duration="2522000" />
+      <workItem from="1640315286775" duration="4405000" />
+      <workItem from="1640825481490" duration="1190000" />
+    </task>
+    <task id="LOCAL-00001" summary="修改文件名称">
+      <created>1617700756595</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1617700756595</updated>
+    </task>
+    <task id="LOCAL-00002" summary="系统菜单维护展示">
+      <created>1617705116184</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1617705116184</updated>
+    </task>
+    <task id="LOCAL-00003" summary="钱包用户展示列修改">
+      <created>1618279563375</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1618279563375</updated>
+    </task>
+    <task id="LOCAL-00004" summary="微信前端登录新增用户">
+      <created>1618500734650</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1618500734651</updated>
+    </task>
+    <task id="LOCAL-00005" summary="微信前端用户查看订单信息">
+      <created>1618654499759</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1618654499759</updated>
+    </task>
+    <task id="LOCAL-00006" summary="微信修改前端展示，后台用户菜单关联">
+      <created>1618932128487</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1618932128487</updated>
+    </task>
+    <task id="LOCAL-00007" summary="提交pom文件">
+      <created>1618932190666</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1618932190666</updated>
+    </task>
+    <task id="LOCAL-00008" summary="修改相关sql查询">
+      <created>1619095994909</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1619095994909</updated>
+    </task>
+    <task id="LOCAL-00009" summary="用户菜单关联回显">
+      <created>1619096798205</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1619096798205</updated>
+    </task>
+    <task id="LOCAL-00010" summary="pdm修改">
+      <created>1619097772968</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1619097772968</updated>
+    </task>
+    <task id="LOCAL-00011" summary="pdm修改">
+      <created>1619183941192</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1619183941192</updated>
+    </task>
+    <task id="LOCAL-00012" summary="修改页面">
+      <created>1619878912137</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1619878912137</updated>
+    </task>
+    <task id="LOCAL-00013" summary="删除修改，微信页面修改">
+      <created>1620210402498</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1620210402499</updated>
+    </task>
+    <task id="LOCAL-00014" summary="根据用户类型判断查看的钱包信息范围">
+      <created>1620444674893</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1620444674893</updated>
+    </task>
+    <task id="LOCAL-00015" summary="微信小程序用户下单补充信息">
+      <created>1620549947604</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1620549947605</updated>
+    </task>
+    <task id="LOCAL-00016" summary="微信小程序下单判断日期超出">
+      <created>1620654284170</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1620654284170</updated>
+    </task>
+    <task id="LOCAL-00017" summary="后台定时任务修改订单状态">
+      <created>1620784493579</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1620784493579</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="修改文件名称" />
+    <MESSAGE value="系统菜单维护展示" />
+    <MESSAGE value="钱包用户展示列修改" />
+    <MESSAGE value="微信前端登录新增用户" />
+    <MESSAGE value="微信前端用户查看订单信息" />
+    <MESSAGE value="微信修改前端展示，后台用户菜单关联" />
+    <MESSAGE value="提交pom文件" />
+    <MESSAGE value="修改相关sql查询" />
+    <MESSAGE value="用户菜单关联回显" />
+    <MESSAGE value="pdm修改" />
+    <MESSAGE value="修改页面" />
+    <MESSAGE value="删除修改，微信页面修改" />
+    <MESSAGE value="根据用户类型判断查看的钱包信息范围" />
+    <MESSAGE value="微信小程序用户下单补充信息" />
+    <MESSAGE value="微信小程序下单判断日期超出" />
+    <MESSAGE value="后台定时任务修改订单状态" />
+    <option name="LAST_COMMIT_MESSAGE" value="后台定时任务修改订单状态" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1640329862896">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1640329862896" />
+    <state x="449" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1640826782273">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="449" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1640826782273" />
+    <state x="447" y="145" width="642" height="534" key="find.popup" timestamp="1640247768820">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="447" y="145" width="642" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1640247768820" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/common-base/src/main/java/com/edgedo/common/util/SysStringEncryptor.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/bar-wxmini-qt/src/main/java/com/edgedo/barwxqt/config/WxMiniProgramLoginFilter.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/bar-wxmini-qt/src/main/java/com/edgedo/config/WxMiniProgramLoginFilter.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/bar-wxmini-qt/src/main/java/com/edgedo/barwxqt/controller/SysUserWxController.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/bar-wxmini-qt/src/main/java/com/edgedo/barwxqt/service/WxMiniProgramServiceImpl.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

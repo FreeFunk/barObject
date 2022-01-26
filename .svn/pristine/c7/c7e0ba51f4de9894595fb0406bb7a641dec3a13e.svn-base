@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edgedo.sys.mapper.SysMeunMapper" >
+   
+   
+    <resultMap id="BaseResultMap" type="com.edgedo.sys.entity.SysMeun" >
+			<id column="ID" property="id"/>
+			<result column="MEUN_NAME" property="meunName"/>
+			<result column="MEUN_URL" property="meunUrl"/>
+			<result column="CREATE_TIME" property="createTime"/>
+			<result column="CREATE_USER_ID" property="createUserId"/>
+			<result column="CREATE_USER_NAME" property="createUserName"/>
+			<result column="SORT_NUM" property="sortNum"/>
+			<result column="ICON_CLS" property="iconCls"/>
+			<result column="DATA_STATE" property="dataState"/>
+    </resultMap>
+   
+    <resultMap id="BaseResultViewMap" type="com.edgedo.sys.queryvo.SysMeunView" extends="BaseResultMap">
+    
+    </resultMap>
+  
+  
+  <!-- ******* 新增字段请修改这里  ******  -->
+  <sql id="Base_Column_List">
+	 ID, MEUN_NAME, MEUN_URL,CREATE_TIME, CREATE_USER_ID, CREATE_USER_NAME, SORT_NUM,ICON_CLS, DATA_STATE
+  </sql>
+  
+  <!-- ******* 利用好这里的动态查询条件  ******  -->
+  <sql id="where">
+  	<where>
+		DATA_STATE='1'
+		<if test='queryObj != null and  queryObj.id != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.id)'>
+		AND  ID = #{queryObj.id}
+		</if>
+		<if test='queryObj != null and  queryObj.meunName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.meunName)'>
+		AND  MEUN_NAME like "%"#{queryObj.meunName}"%"
+		</if>
+		<if test='queryObj != null and  queryObj.createTime != null'>
+			AND  CREATE_TIME = #{queryObj.createTime}
+		</if>
+		<if test='queryObj != null and  queryObj.createUserId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createUserId)'>
+		AND  CREATE_USER_ID = #{queryObj.createUserId}
+		</if>
+		<if test='queryObj != null and  queryObj.createUserName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createUserName)'>
+		AND  CREATE_USER_NAME = #{queryObj.createUserName}
+		</if>
+		<if test='queryObj != null and  queryObj.dataState != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.dataState)'>
+		AND  DATA_STATE = #{queryObj.dataState}
+		</if>
+  	</where>
+  	
+  </sql>
+  
+  <!-- ******* 排序判断  ******  
+  <sql id="orderBy">
+  	<if test="orderBy != null and orderBy!= '' ">
+  		order by  ${orderBy}
+  	</if>
+  </sql>-->
+  
+  
+  <!-- 分页条件查询  -->
+  <select id="listPage" parameterType="com.edgedo.sys.queryvo.SysMeunQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from sys_meun 
+  		<include refid="where"/>
+  </select>
+  
+   <!-- 不分页条件查询  -->
+  <select id="listByObj" parameterType="com.edgedo.sys.queryvo.SysMeunQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from sys_meun 
+  		<include refid="where"/>
+  </select>
+
+	<select id="selectByMeunAllInfo" resultMap="BaseResultViewMap">
+		select <include refid="Base_Column_List"/> from sys_meun
+		where DATA_STATE='1'
+	</select>
+
+	<update id="logicDeleteByIds" parameterType="string">
+		update sys_meun set DATA_STATE='0'
+		where DATA_STATE='1'
+		and ID in
+		<foreach item="id" index="index" collection="list" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</update>
+</mapper>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edgedo.barwxqt.mapper.OrderDetailsInfoMapper" >
+   
+   
+    <resultMap id="BaseResultMap" type="com.edgedo.barwxqt.entity.OrderDetailsInfo" >
+			<id column="ID" property="id"/>
+			<result column="USER_ID" property="userId"/>
+			<result column="USER_NAME" property="userName"/>
+			<result column="USER_TEL" property="userTel"/>
+			<result column="ORDER_ID" property="orderId"/>
+			<result column="SEAT_NO" property="seatNo"/>
+			<result column="SET_MEAL_DESC" property="setMealDesc"/>
+			<result column="TOTAL_CONSUME" property="totalConsume"/>
+			<result column="CREATE_TIME" property="createTime"/>
+			<result column="CREATE_USER_ID" property="createUserId"/>
+			<result column="CREATE_USER_NAME" property="createUserName"/>
+			<result column="DATA_STATE" property="dataState"/>
+			<result column="CHARGEBACK_TIME" property="chargebackTime"/>
+			<result column="REFUND_AMOUNT" property="refundAmount"/>
+			<result column="REASON" property="reason"/>
+			<result column="REMARKS" property="remarks"/>
+    </resultMap>
+   
+    <resultMap id="BaseResultViewMap" type="com.edgedo.barwxqt.queryvo.OrderDetailsInfoView" extends="BaseResultMap">
+    
+    </resultMap>
+  
+  
+  <!-- ******* 新增字段请修改这里  ******  -->
+  <sql id="Base_Column_List">
+	 ID, USER_ID, USER_NAME, USER_TEL, ORDER_ID, SEAT_NO, SET_MEAL_DESC, TOTAL_CONSUME,
+	 CREATE_TIME, CREATE_USER_ID, CREATE_USER_NAME, DATA_STATE,CHARGEBACK_TIME,
+	 REFUND_AMOUNT,REASON,REMARKS
+  </sql>
+  
+  <!-- ******* 利用好这里的动态查询条件  ******  -->
+  <sql id="where">
+  	<where>
+		<if test='queryObj != null and  queryObj.id != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.id)'>
+		AND  ID = #{queryObj.id}
+		</if>
+		<if test='queryObj != null and  queryObj.userId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userId)'>
+		AND  USER_ID = #{queryObj.userId}
+		</if>
+		<if test='queryObj != null and  queryObj.userName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userName)'>
+		AND  USER_NAME = #{queryObj.userName}
+		</if>
+		<if test='queryObj != null and  queryObj.userTel != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.userTel)'>
+		AND  USER_TEL = #{queryObj.userTel}
+		</if>
+		<if test='queryObj != null and  queryObj.orderId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.orderId)'>
+		AND  ORDER_ID = #{queryObj.orderId}
+		</if>
+		<if test='queryObj != null and  queryObj.seatNo != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.seatNo)'>
+		AND  SEAT_NO = #{queryObj.seatNo}
+		</if>
+		<if test='queryObj != null and  queryObj.setMealDesc != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.setMealDesc)'>
+		AND  SET_MEAL_DESC = #{queryObj.setMealDesc}
+		</if>
+		<if test='queryObj != null and  queryObj.createTime != null'>
+			AND  CREATE_TIME = #{queryObj.createTime}
+		</if>
+		<if test='queryObj != null and  queryObj.createUserId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createUserId)'>
+		AND  CREATE_USER_ID = #{queryObj.createUserId}
+		</if>
+		<if test='queryObj != null and  queryObj.createUserName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createUserName)'>
+		AND  CREATE_USER_NAME = #{queryObj.createUserName}
+		</if>
+		<if test='queryObj != null and  queryObj.dataState != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.dataState)'>
+		AND  DATA_STATE = #{queryObj.dataState}
+		</if>
+  	</where>
+  	
+  </sql>
+  
+  <!-- ******* 排序判断  ******  
+  <sql id="orderBy">
+  	<if test="orderBy != null and orderBy!= '' ">
+  		order by  ${orderBy}
+  	</if>
+  </sql>-->
+  
+  
+  <!-- 分页条件查询  -->
+  <select id="listPage" parameterType="com.edgedo.barwxqt.queryvo.OrderDetailsInfoQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from order_details_info 
+  		<include refid="where"/>
+  </select>
+  
+   <!-- 不分页条件查询  -->
+  <select id="listByObj" parameterType="com.edgedo.barwxqt.queryvo.OrderDetailsInfoQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from order_details_info 
+  		<include refid="where"/>
+  </select>
+
+	<select id="selectByOrderIdList" parameterType="string" resultMap="BaseResultViewMap">
+		select <include refid="Base_Column_List"/> from order_details_info
+		where DATA_STATE='1'
+		and ORDER_ID in
+		<foreach item="id" index="index" collection="list" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</select>
+
+	<select id="selectByOrderId" parameterType="string" resultMap="BaseResultViewMap">
+		select <include refid="Base_Column_List"/> from order_details_info
+		where DATA_STATE='1'
+		and ORDER_ID = #{id}
+	</select>
+
+
+	<select id="selectByUserIdAndOrderState" parameterType="string" resultMap="BaseResultViewMap">
+		select <include refid="Base_Column_List"/> from order_details_info
+		where DATA_STATE='1'
+		and ORDER_ID in (
+			select ID from order_info
+			where DATA_STATE='1' and USER_ID=#{userId}
+			<if test='checkStats != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(checkStats)'>
+				and CHARGEBACK=#{checkStats}
+			</if>
+		)
+	</select>
+
+</mapper>

@@ -1,0 +1,17 @@
+package com.edgedo.bar.queryvo;
+import com.edgedo.common.base.QueryObj;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize.Inclusion;
+
+public class ChargebackDetailsInfoQuery extends QueryObj{
+	@JsonSerialize(include=Inclusion.NON_EMPTY) 
+	private ChargebackDetailsInfoView queryObj = new ChargebackDetailsInfoView();
+
+	public ChargebackDetailsInfoView getQueryObj() {
+		return queryObj;
+	}
+
+	public void setQueryObj(ChargebackDetailsInfoView queryObj) {
+		this.queryObj = queryObj;
+	}
+}

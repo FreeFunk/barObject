@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>新增</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/app.css" media="all">
+</head>
+<body>
+
+<div class="layui-form" lay-filter="SeatInfo-form" id="SeatInfo-form" style="padding: 20px 30px 0 0;">
+    <div class="layui-row">
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md6"style="width: 250px">
+            <div class="layui-form-item" >
+                <label class="layui-form-label">座位号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="seatNo" lay-verify="required" placeholder="请输入座位号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+            <div class="layui-form-item" >
+                <label class="layui-form-label">容纳人数</label>
+                <div class="layui-input-block">
+                    <input type="text" name="seatCapacity" lay-verify="required|number" placeholder="请输入容纳人数" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md6"style="width: 250px">
+            <div class="layui-form-item">
+                <label class="layui-form-label">座位区域</label>
+                <div class="layui-input-block">
+                    <select name="partition" lay-verify="required">
+                        <option value=""></option>
+                        <option value="外围卡座">外围卡座</option>
+                        <option value="核心卡座">核心卡座</option>
+                        <option value="中心散台">中心散台</option>
+                        <option value="尊贵卡座">尊贵卡座</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md6"style="width: 250px">
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否横放</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="isTrans" value="1" title="是" checked="">
+                    <input type="radio" name="isTrans" value="0" title="否">
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md6"style="width: 250px">
+            <div class="layui-form-item" >
+                <label class="layui-form-label">排</label>
+                <div class="layui-input-block" >
+                    <select name="yIndex" lay-verify="required" lay-filter="yIndexChange" id="yIndex">
+                        <option value=""></option>
+                        <option value="1">第一排</option>
+                        <option value="2">第二排</option>
+                        <option value="3">第三排</option>
+                        <option value="4">第四排</option>
+                        <option value="5">第五排</option>
+                        <option value="6">第六排</option>
+                        <option value="7">第七排</option>
+                        <option value="8">第八排</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md6" style="width: 250px">
+            <div class="layui-form-item" >
+                <label class="layui-form-label">列</label>
+                <div class="layui-input-block" >
+                    <select name="xIndex" lay-verify="required" lay-filter="xIndexChange" id="xIndex">
+                        <option value=""></option>
+                        <option value="1">第一列</option>
+                        <option value="2">第二列</option>
+                        <option value="3">第三列</option>
+                        <option value="4">第四列</option>
+                        <option value="5">第五列</option>
+                        <option value="6">第六列</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <p id="msg_pwd" style="margin-left: 150px"></p>
+
+
+            <div class="layui-form-item"style="width: 350px">
+                <label class="layui-form-label">套餐</label>
+                <div class="layui-input-block">
+                    <select name="setMealId" lay-verify="required" id="partition">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+    </div>
+
+    <div class="layui-form-item layui-hide">
+        <input type="button" lay-submit lay-filter="SeatInfo-form-submit" id="SeatInfo-form-submit" value="确认添加">
+    </div>
+</div>
+
+<script src="/layuiadmin/layui/layui.js"></script>
+<script>
+        layui.config({
+            base: '/layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['index', 'form','laydate'], function(){
+            var $ = layui.$
+                ,laydate = layui.laydate
+                ,admin  = layui.admin
+                ,form = layui.form;
+
+
+
+
+            //查询套餐名、套餐ID
+            function setMealList() {
+                admin.req({
+                    url:layui.setter.basePath + '/ConsInfo/setMealListpage.jsn',
+                    method:"post",
+                    data:{} ,
+                    success:function(data){
+                       /* var list = data.data;
+                        var str = "";
+                        for(var i=0;i<list.length;i++){
+                            str +="<option value='"+list[i].value+"'>"+list[i].name+"</option>"
+                        }
+                        $("#partition").html(str);
+
+                        $("#partition").selectpicker('refresh');*/
+
+                        dropdown.render({
+                            elem: 'partition'
+                            ,data: [data.data
+                            ]
+                        })
+
+                    }
+
+                });
+            }
+            setMealList();
+
+
+
+            //监听提交
+            form.on('submit(SeatInfo-form-submit)', function(data){
+                var field = data.field; //获取提交的字段
+                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                //提交 Ajax 成功后，关闭当前弹层并重载表格
+                admin.req({
+                    url:layui.setter.basePath +'/seatInfo/saveOrUpdate.jsn',
+                    data:field,
+                    method:"post",
+                    success:function (data) {
+                        if(data.success){
+                            parent.layui.table.reload('SeatInfo-list'); //重载表格
+                            parent.layer.close(index); //再执行关闭
+                            parent.layer.msg('添加成功', {
+                                icon: 1
+                            });
+                        }else{
+                            parent.layer.msg(data.errMsg, {
+                            });
+                        }
+
+                    },
+                });
+
+            });
+            laydate.render({
+                elem: '#createTime', //指定元素
+                type:'datetime'
+            });
+        })
+</script>
+
+</body>
+</html>

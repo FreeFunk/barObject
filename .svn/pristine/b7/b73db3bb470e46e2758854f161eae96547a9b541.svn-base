@@ -1,0 +1,28 @@
+<!-- 资料库主页 -->
+<import src="/pages/template/template.wxml" />
+<view class="bg-gradual-pink padding radius text-center shadow-blur">
+  <view class="grid col-5 margin-bottom text-center" wx:for="{{tableSeat}}" wx:for-index="x_index" style="flex-wrap: nowrap;margin-bottom: 12%;">
+    <view wx:for="{{tableSeat[x_index]}}" wx:for-index="y_index">
+        <view wx:if="{{item.isFloor}}" style="width:170%;height:50px" class="basis-xs bg-grey margin-xs padding-sm radius">
+          {{item.seatName}}
+        </view>
+        <button wx:if="{{!item.isFloor && item.isTrans=='1' && item.pos!='1'}}" class="cu-btn bg-black shadow" style="width:50%;padding: 0 0 0 0;font-size:8px">
+            {{item.seatName}}
+          </button>
+          <button wx:if="{{!item.isFloor && item.isTrans!='1' && item.pos!='1'}}" class="cu-btn bg-black shadow" style="width:130%;padding: 0 0 0 0;font-size:8px;transform: rotate(90deg);">
+            {{item.seatName}}
+          </button>
+          <button wx:if="{{!item.isFloor && item.isTrans=='1' && item.pos=='1'}}" class="cu-btn bg-black shadow" style="width:80%;padding: 0 0 0 0;">
+            {{item.seatName}}
+          </button>
+        <button wx:if="{{!item.isFloor && item.isTrans!='1' && item.pos=='1'}}" class="cu-btn bg-black shadow" style="width:130%;padding: 0 0 0 0;transform: rotate(90deg);">
+            {{item.seatName}}
+          </button>
+
+    </view>
+    
+  </view>
+</view>
+<template is="navBottom" data="{{selectNav}}" />
+<template is="getPhoneNum" data="{{getPhoneNumFlag}}" />
+<template is="getPermission" data="{{getPermissionFlag}}" />

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edgedo.bar.mapper.ConsInfoMapper" >
+   
+   
+    <resultMap id="BaseResultMap" type="com.edgedo.bar.entity.ConsInfo" >
+			<id column="ID" property="id"/>
+			<result column="CREATE_TIME" property="createTime"/>
+			<result column="CREATE_USER_ID" property="createUserId"/>
+			<result column="CREATE_USER_NAME" property="createUserName"/>
+			<result column="SEAT_ID" property="seatId"/>
+			<result column="SET_MEAL_NAME" property="setMealName"/>
+			<result column="SET_MEAL_DESC" property="setMealDesc"/>
+			<result column="DATA_STATE" property="dataState"/>
+    </resultMap>
+   
+    <resultMap id="BaseResultViewMap" type="com.edgedo.bar.queryvo.ConsInfoView" extends="BaseResultMap">
+    
+    </resultMap>
+  
+  
+  <!-- ******* 新增字段请修改这里  ******  -->
+  <sql id="Base_Column_List">
+	 ID, CREATE_TIME, CREATE_USER_ID, CREATE_USER_NAME, SEAT_ID, SET_MEAL_NAME, SET_MEAL_DESC, DATA_STATE
+  </sql>
+  
+  <!-- ******* 利用好这里的动态查询条件  ******  -->
+  <sql id="where">
+  	<where>
+		DATA_STATE='1' and SEAT_ID IS NOT NULL
+		<if test='queryObj != null and  queryObj.id != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.id)'>
+		AND  ID = #{queryObj.id}
+		</if>
+		<if test='queryObj != null and  queryObj.createTime != null'>
+			AND  CREATE_TIME = #{queryObj.createTime}
+		</if>
+		<if test='queryObj != null and  queryObj.createUserId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createUserId)'>
+		AND  CREATE_USER_ID = #{queryObj.createUserId}
+		</if>
+		<if test='queryObj != null and  queryObj.createUserName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createUserName)'>
+		AND  CREATE_USER_NAME = #{queryObj.createUserName}
+		</if>
+		<if test='queryObj != null and  queryObj.seatId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.seatId)'>
+		AND  SEAT_ID = #{queryObj.seatId}
+		</if>
+		<if test='queryObj != null and  queryObj.setMealName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.setMealName)'>
+		AND  SET_MEAL_NAME = #{queryObj.setMealName}
+		</if>
+		<if test='queryObj != null and  queryObj.setMealDesc != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.setMealDesc)'>
+		AND  SET_MEAL_DESC = #{queryObj.setMealDesc}
+		</if>
+		<if test='queryObj != null and  queryObj.dataState != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.dataState)'>
+		AND  DATA_STATE = #{queryObj.dataState}
+		</if>
+  	</where>
+  	
+  </sql>
+  
+  <!-- ******* 排序判断  ******  
+  <sql id="orderBy">
+  	<if test="orderBy != null and orderBy!= '' ">
+  		order by  ${orderBy}
+  	</if>
+  </sql>-->
+  
+  
+  <!-- 分页条件查询  -->
+  <select id="listPage" parameterType="com.edgedo.bar.queryvo.ConsInfoQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from cons_info 
+  		<include refid="where"/>
+  </select>
+  
+   <!-- 不分页条件查询  -->
+  <select id="listByObj" parameterType="com.edgedo.bar.queryvo.ConsInfoQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from cons_info 
+  		<include refid="where"/>
+  </select>
+
+	<!-- 根据座位号和最低消费查询 -->
+	<select id="listPageForSeatNoAndMinConsume" parameterType="com.edgedo.bar.queryvo.ConsInfoQuery" resultMap="BaseResultViewMap">
+		select <include refid="Base_Column_List"/> from cons_info
+		where DATA_STATE='1' and SEAT_ID IS NOT NULL
+		and SEAT_ID IN (select ID from seat_info where DATA_STATE='1'
+			<if test='queryObj != null and  queryObj.seatNo != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.seatNo)'>
+				AND  SEAT_NO like concat('%',#{queryObj.seatNo},'%')
+			</if>
+			<if test='queryObj != null and  queryObj.seatMinConsume != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.seatMinConsume)'>
+				AND  SEAT_MIN_CONSUME = #{queryObj.seatMinConsume}
+			</if>
+		)
+	</select>
+  
+  
+</mapper>

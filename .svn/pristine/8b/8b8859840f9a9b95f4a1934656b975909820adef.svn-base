@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edgedo.bar.mapper.TodaySeatDetailsInfoMapper" >
+   
+   
+    <resultMap id="BaseResultMap" type="com.edgedo.bar.entity.TodaySeatDetailsInfo" >
+			<id column="ID" property="id"/>
+			<result column="SEAT_ID" property="seatId"/>
+			<result column="SEAT_STATE" property="seatState"/>
+			<result column="CREATE_TIME" property="createTime"/>
+			<result column="CREATE_USER_ID" property="createUserId"/>
+			<result column="CREATE_USER_NAME" property="createUserName"/>
+			<result column="DATA_STATE" property="dataState"/>
+			<result column="CREATE_TIME_FLAG" property="createTimeFlag"/>
+    </resultMap>
+   
+    <resultMap id="BaseResultViewMap" type="com.edgedo.bar.queryvo.TodaySeatDetailsInfoView" extends="BaseResultMap">
+    
+    </resultMap>
+  
+  
+  <!-- ******* 新增字段请修改这里  ******  -->
+  <sql id="Base_Column_List">
+	 ID, SEAT_ID, SEAT_STATE, CREATE_TIME, CREATE_USER_ID, CREATE_USER_NAME, DATA_STATE, CREATE_TIME_FLAG
+  </sql>
+  
+  <!-- ******* 利用好这里的动态查询条件  ******  -->
+  <sql id="where">
+  	<where>
+		<if test='queryObj != null and  queryObj.id != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.id)'>
+		AND  ID = #{queryObj.id}
+		</if>
+		<if test='queryObj != null and  queryObj.seatId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.seatId)'>
+		AND  SEAT_ID = #{queryObj.seatId}
+		</if>
+		<if test='queryObj != null and  queryObj.seatState != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.seatState)'>
+		AND  SEAT_STATE = #{queryObj.seatState}
+		</if>
+		<if test='queryObj != null and  queryObj.createTime != null'>
+			AND  CREATE_TIME = #{queryObj.createTime}
+		</if>
+		<if test='queryObj != null and  queryObj.createUserId != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createUserId)'>
+		AND  CREATE_USER_ID = #{queryObj.createUserId}
+		</if>
+		<if test='queryObj != null and  queryObj.createUserName != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createUserName)'>
+		AND  CREATE_USER_NAME = #{queryObj.createUserName}
+		</if>
+		<if test='queryObj != null and  queryObj.dataState != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.dataState)'>
+		AND  DATA_STATE = #{queryObj.dataState}
+		</if>
+		<if test='queryObj != null and  queryObj.createTimeFlag != null and @org.apache.commons.lang3.StringUtils@isNotEmpty(queryObj.createTimeFlag)'>
+			AND  CREATE_TIME_FLAG = #{queryObj.createTimeFlag}
+		</if>
+  	</where>
+  	
+  </sql>
+  
+  <!-- ******* 排序判断  ******  
+  <sql id="orderBy">
+  	<if test="orderBy != null and orderBy!= '' ">
+  		order by  ${orderBy}
+  	</if>
+  </sql>-->
+  
+  
+  <!-- 分页条件查询  -->
+  <select id="listPage" parameterType="com.edgedo.bar.queryvo.TodaySeatDetailsInfoQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from today_seat_details_info 
+  		<include refid="where"/>
+  </select>
+  
+   <!-- 不分页条件查询  -->
+  <select id="listByObj" parameterType="com.edgedo.bar.queryvo.TodaySeatDetailsInfoQuery" resultMap="BaseResultViewMap">
+  		select <include refid="Base_Column_List"/> from today_seat_details_info 
+  		<include refid="where"/>
+  </select>
+
+
+	<select id="selectInDetermineForTime" resultType="int">
+		select count(1) from today_seat_details_info
+		where DATA_STATE = '1' and  SEAT_ID=#{seatId} and CREATE_TIME_FLAG=#{dateTimeInteger}
+	</select>
+  
+  
+</mapper>

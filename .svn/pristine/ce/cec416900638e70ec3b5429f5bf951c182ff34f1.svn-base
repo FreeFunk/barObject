@@ -1,0 +1,8 @@
+package com.edgedo.bar.queryvo;
+
+import com.edgedo.bar.entity.ConsInfo;
+
+public class ConsInfoView extends ConsInfo {
+
+
+}

@@ -1,0 +1,20 @@
+package com.edgedo.bar.queryvo;
+
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.edgedo.bar.entity.SeatInfo;
+
+public class SeatInfoView extends SeatInfo {
+
+    /**
+     * 属性描述:套餐名
+     */
+    java.lang.String setMealName;
+
+    public String getSetMealName() {
+        return setMealName;
+    }
+
+    public void setSetMealName(String setMealName) {
+        this.setMealName = setMealName;
+    }
+}

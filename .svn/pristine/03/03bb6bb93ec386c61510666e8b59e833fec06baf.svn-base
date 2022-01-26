@@ -1,0 +1,8 @@
+package com.edgedo.bar.queryvo;
+
+import com.edgedo.bar.entity.OrderInfo;
+
+public class OrderInfoView extends OrderInfo {
+
+
+}

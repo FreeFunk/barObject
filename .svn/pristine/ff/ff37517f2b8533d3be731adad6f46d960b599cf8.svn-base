@@ -1,0 +1,113 @@
+package com.edgedo.bar.service;
+		
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.edgedo.bar.entity.OrderDetailsInfo;
+import com.edgedo.bar.entity.OrderInfo;
+import com.edgedo.bar.queryvo.OrderInfoView;
+import com.edgedo.common.util.Guid;
+import com.edgedo.bar.entity.ChargebackDetailsInfo;
+import com.edgedo.bar.mapper.ChargebackDetailsInfoMapper;
+import com.edgedo.bar.queryvo.ChargebackDetailsInfoQuery;
+import com.edgedo.bar.queryvo.ChargebackDetailsInfoView;
+import jodd.datetime.JDateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+
+@Service
+@Transactional(propagation = Propagation.REQUIRED,rollbackFor=Exception.class)
+public class ChargebackDetailsInfoService {
+	
+	
+	@Autowired
+	private ChargebackDetailsInfoMapper ChargebackDetailsInfoMapper;
+
+	@Autowired
+	private OrderInfoService orderInfoService;
+
+	public List<ChargebackDetailsInfoView> listPage(ChargebackDetailsInfoQuery ChargebackDetailsInfoQuery){
+		//1.分页查询所有记录的退单信息
+		List<ChargebackDetailsInfoView> chargebackInfoList = ChargebackDetailsInfoMapper.listPage(ChargebackDetailsInfoQuery);
+		//重新将集合set回query分页对象中
+		ChargebackDetailsInfoQuery.setList(chargebackInfoList);
+		return chargebackInfoList;
+	}
+
+	public List<ChargebackDetailsInfoView> listPageForOrderNoAndChargebackTime(ChargebackDetailsInfoQuery ChargebackDetailsInfoQuery) {
+		List list = ChargebackDetailsInfoMapper.listPageForOrderNoAndChargebackTime(ChargebackDetailsInfoQuery);
+		ChargebackDetailsInfoQuery.setList(list);
+		return list;
+	}
+	
+	/***
+	 * 新增方法
+	 * @return
+	 */
+	@Transactional(propagation = Propagation.REQUIRED,rollbackFor=Exception.class)
+	public String insert(ChargebackDetailsInfo ChargebackDetailsInfo) {
+		ChargebackDetailsInfo.setId(Guid.guid());
+		ChargebackDetailsInfoMapper.insert(ChargebackDetailsInfo);
+		return "";
+	}
+	
+	/***
+	 * 动态修改方法
+	 * @param
+	 * @return
+	 */
+	@Transactional(propagation = Propagation.REQUIRED,rollbackFor=Exception.class)
+	public String update(ChargebackDetailsInfo ChargebackDetailsInfo) {
+		ChargebackDetailsInfoMapper.updateById(ChargebackDetailsInfo);
+		return "";
+	}
+	
+	/***
+	 * 全修改
+	 * @param
+	 * @return
+	 */
+	@Transactional(propagation = Propagation.REQUIRED,rollbackFor=Exception.class)
+	public String updateAll(ChargebackDetailsInfo ChargebackDetailsInfo) {
+		ChargebackDetailsInfoMapper.updateAllColumnById(ChargebackDetailsInfo);
+		return "";
+	}
+	
+	
+	
+	/**
+	 * 单个删除
+	 * @param id
+	 */
+	@Transactional(propagation = Propagation.REQUIRED,rollbackFor=Exception.class)
+	public int delete(String id) {
+		
+		return ChargebackDetailsInfoMapper.deleteById(id);
+	}
+	
+	/**
+	 * 批量删除
+	 * @param ids
+	 */
+	@Transactional(propagation = Propagation.REQUIRED,rollbackFor=Exception.class)
+	public int deleteByIds(List<String> ids) {
+		
+		return ChargebackDetailsInfoMapper.deleteBatchIds(ids);
+	}
+	
+	
+	
+	/**
+	 * 加载单个
+	 * @param id
+	 */
+	public ChargebackDetailsInfo loadById(String id) {
+		return ChargebackDetailsInfoMapper.selectById(id);
+	}
+
+
+
+}
